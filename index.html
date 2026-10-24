@@ -4,6 +4,84 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MDV Studios | Portafolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;700&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="light"></div>
+
+    <nav>
+        <a href="#top" class="logo">MDV</a>
+        <div class="links">
+            <a href="#sobre">Sobre mí</a>
+            <a href="#proyectos">Proyectos</a>
+            <a href="#redes">Redes</a>
+        </div>
+    </nav>
+
+    <header id="top">
+        <p class="studio">MDV Studios</p>
+        <h1 data-text="M0DDEV">M0DDEV</h1>
+        <p class="sub">Desarrollador independiente y creador de juegos en Roblox</p>
+        <svg class="worm" viewBox="0 0 600 40" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M0 20 Q 37 0 75 20 T 150 20 T 225 20 T 300 20 T 375 20 T 450 20 T 525 20 T 600 20"/>
+        </svg>
+    </header>
+
+    <main>
+        <section id="sobre" class="block">
+            <h2>Sobre mí</h2>
+            <p>Hago juegos en Roblox con Luau, casi todo desde Debian. Me gusta el horror, la supervivencia y la ciencia ficción, y trabajo solo bajo el nombre de MDV Studios.</p>
+            <p>Este sitio está hospedado en GitHub Pages y lo mantengo a mano.</p>
+        </section>
+
+        <section id="proyectos" class="block">
+            <h2>Mis proyectos</h2>
+            <div class="grid">
+                <article class="proj worm">
+                    <h3>Worm Cave</h3>
+                    <p>Juego de supervivencia y horror en Roblox. Los gusanos te agarran y te arrastran a la cueva.</p>
+                    <a class="btn" href="https://www.roblox.com/games/ID_DEL_JUEGO" target="_blank" rel="noopener">Jugar en Roblox</a>
+                </article>
+                <article class="proj robo">
+                    <h3>Ro-botics</h3>
+                    <p>Proyecto sci-fi en desarrollo.</p>
+                    <span class="tag">En desarrollo</span>
+                </article>
+            </div>
+        </section>
+
+        <section id="redes" class="block">
+            <h2>Mis redes</h2>
+            <ul class="social">
+                <li><a href="https://www.roblox.com/communities/ID_DEL_GRUPO" target="_blank" rel="noopener">Grupo de Roblox</a></li>
+                <li><a href="https://discord.gg/TU_INVITE" target="_blank" rel="noopener">Discord</a></li>
+                <li><a href="https://www.youtube.com/@TU_CANAL" target="_blank" rel="noopener">YouTube</a></li>
+                <li><a href="https://github.com/TU_USUARIO" target="_blank" rel="noopener">GitHub</a></li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 M0DDEV - Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        const light = document.querySelector('.light')
+        addEventListener('pointermove', e => {
+            light.style.setProperty('--x', e.clientX + 'px')
+            light.style.setProperty('--y', e.clientY + 'px')
+        })
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MDV Studios | Portafolio</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
