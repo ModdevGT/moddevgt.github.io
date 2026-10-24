@@ -57,11 +57,12 @@
         .links a:hover { color: var(--red); }
         .links a.act { border-bottom-color: var(--red); }
 
-        .view { display: none; padding: 110px 6vw 60px; max-width: 960px; margin: 0 auto; min-height: 80vh; }
+        .view { display: none; padding: 110px 6vw 60px; max-width: 1040px; margin: 0 auto; min-height: 80vh; }
         .view.on { display: block; animation: fade .35s ease; }
 
         #home { max-width: none; min-height: 100vh; position: relative; overflow: hidden; }
         #home.on { display: flex; flex-direction: column; justify-content: center; }
+        #home > :not(.scene) { position: relative; z-index: 1; }
 
         .studio { color: var(--red); font-family: 'Chakra Petch', sans-serif; font-weight: 700; letter-spacing: .12em; }
 
@@ -74,67 +75,108 @@
 
         .sub { max-width: 32ch; margin-top: 16px; font-size: 1.25rem; color: var(--dim); }
 
-        .worm { position: absolute; left: 0; bottom: 60px; width: 100%; height: 40px; }
-        .worm path {
-            fill: none;
-            stroke: var(--red);
-            stroke-width: 6;
-            stroke-linecap: round;
-            stroke-dasharray: 90 1000;
-            animation: crawl 7s linear infinite;
-        }
+        .scene { position: absolute; right: 3vw; bottom: 0; width: min(520px, 86vw); height: auto; pointer-events: none; }
+        .mound { fill: #151515; stroke: var(--red); stroke-width: 2; }
+        .mouth { fill: #000; stroke: #4a0b0b; stroke-width: 2; }
+        .gl { stroke: var(--red); stroke-width: 2; }
+        .wb, .ws, .wr { fill: none; }
+        .wb { stroke: #e8475f; stroke-width: 30; stroke-linecap: round; }
+        .ws { stroke: #7d1424; stroke-width: 30; stroke-dasharray: 2 12; }
+        .wr { stroke: #ffa3b0; stroke-width: 36; stroke-dasharray: 14 1000; stroke-dashoffset: -150; }
+
+        .up { transform: translateY(230px); animation: up 11s ease-in-out infinite; }
+        .u1 { --h: 0px; }
+        .u2 { --h: 30px; animation-duration: 15s; animation-delay: -9s; }
+        .u3 { --h: 12px; animation-duration: 19s; animation-delay: -14s; }
+        .sw { transform-origin: 0 0; animation: sway 4s ease-in-out infinite alternate; }
+        .u2 .sw { animation-duration: 5s; }
+        .u3 .sw { animation-duration: 3.4s; }
 
         h2 { font-size: 2.3rem; margin-bottom: 26px; }
         .view p { max-width: 62ch; margin-bottom: 14px; color: #e4e4e4; }
 
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); gap: 20px; }
+        .grid.big { grid-template-columns: repeat(auto-fit, minmax(min(100%, 440px), 1fr)); gap: 26px; }
 
-        .card {
-            background: var(--card);
-            padding: 24px;
-            border: 2px solid #2a2a2a;
-            border-top: 4px solid var(--red);
-            transition: transform .2s, border-color .2s;
+        .card { background: var(--card); border: 2px solid #2a2a2a; transition: border-color .2s; }
+        .card:hover { border-color: var(--red); }
+        .card h3 { font-size: 1.5rem; margin-bottom: 8px; }
+        .info { padding: 24px; }
+        .info p { font-size: .95rem; }
+
+        .shot {
+            height: 230px;
+            background: var(--img, none) center / cover no-repeat #1a1a1a;
+            border-bottom: 2px solid var(--red);
         }
-        .card:hover { transform: translateY(-5px); border-color: var(--red); }
-        .card h3 { font-size: 1.45rem; margin-bottom: 8px; }
-        .card p { font-size: .95rem; margin-bottom: 12px; }
+
+        .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+        .tag { padding: 2px 12px; border: 1px solid var(--red); color: var(--red); font-size: .85rem; }
+        .tag.hot { background: var(--red); color: #000; }
+
+        .feat { list-style: none; margin: 4px 0 20px; }
+        .feat li { position: relative; padding-left: 20px; margin-bottom: 6px; color: #e4e4e4; font-size: .95rem; }
+        .feat li::before { content: ''; position: absolute; left: 0; top: .6em; width: 8px; height: 8px; background: var(--red); }
+
+        .game {
+            min-height: 230px;
+            display: flex;
+            align-items: flex-end;
+            padding: 20px;
+            background: linear-gradient(to top, rgba(0, 0, 0, .92), rgba(0, 0, 0, .3)), var(--img, none) center / cover no-repeat #141414;
+        }
+        .game p { margin: 0; font-size: .9rem; color: var(--dim); }
 
         .btn {
-            display: inline-block;
-            padding: 10px 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 22px;
             background: var(--red);
             color: #000;
             font-weight: 500;
-            transition: background .2s, color .2s;
+            transition: background .2s;
         }
         .btn:hover { background: var(--white); }
+        #home .btn { margin-top: 24px; align-self: flex-start; }
+        .ico { width: 20px; height: 20px; }
 
-        .tag { display: inline-block; padding: 3px 12px; border: 1px solid var(--red); color: var(--red); font-size: .85rem; }
+        .prof { padding: 24px; margin-bottom: 26px; border-top: 4px solid var(--red); }
 
         .social { list-style: none; display: flex; flex-wrap: wrap; gap: 14px; }
         .social a {
-            display: block;
+            display: flex;
+            align-items: center;
+            gap: 10px;
             padding: 12px 24px;
             border: 2px solid var(--red);
             transition: background .2s, color .2s;
         }
         .social a:hover { background: var(--red); color: #000; }
+        .social a:hover .ico { filter: invert(1); }
 
         footer { text-align: center; padding: 30px 6vw; color: var(--dim); font-size: .9rem; border-top: 1px solid #222; }
 
         @keyframes fade { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
         @keyframes flicker { 0% { opacity: 0; } 10% { opacity: 1; } 14% { opacity: 0; } 22% { opacity: 1; } 28% { opacity: .2; } 36%, 100% { opacity: 1; } }
-        @keyframes crawl { from { stroke-dashoffset: 90; } to { stroke-dashoffset: -1000; } }
+        @keyframes up {
+            0%, 62% { transform: translateY(230px); }
+            72%, 88% { transform: translateY(var(--h)); }
+            96%, 100% { transform: translateY(230px); }
+        }
+        @keyframes sway { from { transform: rotate(-5deg); } to { transform: rotate(5deg); } }
 
         @media (max-width: 600px) {
             .links { font-size: .9rem; gap: 6px 14px; }
             .view { padding-top: 130px; }
+            #home { padding-bottom: 280px; }
             h1 { -webkit-text-stroke-width: 2px; }
+            .scene { right: 0; left: 0; margin: auto; }
         }
 
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after { animation: none !important; transition: none !important; }
+            .up { transform: translateY(0); }
         }
     </style>
 </head>
@@ -154,29 +196,62 @@
         <p class="studio">MDV STUDIOS</p>
         <h1>M0DDEV</h1>
         <p class="sub">Independent developer and Roblox game creator</p>
-        <svg class="worm" viewBox="0 0 600 40" preserveAspectRatio="none" aria-hidden="true">
-            <path d="M0 20 Q 37 0 75 20 T 150 20 T 225 20 T 300 20 T 375 20 T 450 20 T 525 20 T 600 20"/>
+        <a class="btn" href="https://www.roblox.com/es/users/5221332218/profile" target="_blank" rel="noopener">
+            <img class="ico" src="https://cdn.simpleicons.org/roblox/000000" alt="">Roblox profile
+        </a>
+
+        <svg class="scene" viewBox="0 0 400 300" aria-hidden="true">
+            <defs>
+                <g id="wm">
+                    <path class="wb" d="M0 0C-10-40 12-80 0-120C-8-150 8-170 0-190"/>
+                    <path class="ws" d="M0 0C-10-40 12-80 0-120C-8-150 8-170 0-190"/>
+                    <path class="wr" d="M0 0C-10-40 12-80 0-120C-8-150 8-170 0-190"/>
+                    <ellipse cx="0" cy="-196" rx="7" ry="4" fill="#3b0a10"/>
+                </g>
+                <clipPath id="cp"><rect width="400" height="262"/></clipPath>
+            </defs>
+            <path class="mound" d="M30 262Q50 130 140 105Q200 90 260 105Q350 130 370 262Z"/>
+            <path class="mouth" d="M120 262V205Q120 160 200 160Q280 160 280 205V262Z"/>
+            <g clip-path="url(#cp)">
+                <g transform="translate(165 262)"><g class="up u1"><g class="sw"><use href="#wm"/></g></g></g>
+                <g transform="translate(235 262)"><g class="up u2"><g class="sw"><use href="#wm"/></g></g></g>
+                <g transform="translate(200 262)"><g class="up u3"><g class="sw"><use href="#wm"/></g></g></g>
+            </g>
+            <path class="gl" d="M0 262H400"/>
         </svg>
     </section>
 
     <section id="about" class="view">
         <h2>About me</h2>
-        <p>I make Roblox games with Luau, mostly from Debian. I like horror, survival and sci-fi, and I work solo under the name MDV Studios.</p>
-        <p>This site is hosted on GitHub Pages and I maintain it by hand.</p>
+        <p>i make games on roblox with luau, i love space, i use Debian trixie with vinegar.</p>
+        <p>this site is hosted on gitHub pages and i maintain it by hand.</p>
     </section>
 
     <section id="projects" class="view">
         <h2>My projects</h2>
-        <div class="grid">
+        <div class="grid big">
             <article class="card">
-                <h3>Worm Cave</h3>
-                <p>Survival horror game on Roblox. The worms grab you and drag you into the cave.</p>
-                <a class="btn" href="https://www.roblox.com/es/games/110139475350829/worm-cave" target="_blank" rel="noopener">Play on Roblox</a>
+                <div class="shot" style="--img:url('img/wormcave.jpg')"></div>
+                <div class="info">
+                    <div class="tags"><span class="tag">Survival</span><span class="tag">Horror</span><span class="tag">Roblox</span></div>
+                    <h3>worm cave</h3>
+                    <p>survival horror game, u have to escape from worms and dont get eaten</p>
+                    <ul class="feat">
+                        <li>Worms grab players and pull them into the cave</li>
+                        <li>A rare mode where a worm attacks on the spot</li>
+                        <li>Worms call others and hunt in groups</li>
+                        <li>A mega worm</li>
+                    </ul>
+                    <a class="btn" href="https://www.roblox.com/es/games/110139475350829/worm-cave" target="_blank" rel="noopener">Play on Roblox</a>
+                </div>
             </article>
             <article class="card">
-                <h3>Ro-botics</h3>
-                <p>Sci-fi project in development.</p>
-                <span class="tag">In development</span>
+                <div class="shot" style="--img:url('img/robotics.jpg')"></div>
+                <div class="info">
+                    <div class="tags"><span class="tag hot">W.I.P</span></div>
+                    <h3>Ro-Botics</h3>
+                    <p>ro-bio inspired project in development.</p>
+                </div>
             </article>
         </div>
     </section>
@@ -184,32 +259,35 @@
     <section id="games" class="view">
         <h2>Favorite games</h2>
         <div class="grid">
-            <article class="card">
-                <h3>Kerbal Space Program</h3>
-                <p>Build rockets, launch them, and try not to crash.</p>
+            <article class="card game" style="--img:url('img/ksp.jpg')">
+                <div><h3>Kerbal Space Program</h3><p>in this game u build rockets and explore planets trying not to explode</p></div>
             </article>
-            <article class="card">
-                <h3>Roblox</h3>
-                <p>Where I play and where I build my own games.</p>
+            <article class="card game" style="--img:url('img/roblox.jpg')">
+                <div><h3>Roblox</h3><p>where i play and where i build my own games</p></div>
             </article>
-            <article class="card">
-                <h3>Garry's Mod</h3>
-                <p>A sandbox with no rules and endless addons.</p>
+            <article class="card game" style="--img:url('img/gmod.jpg')">
+                <div><h3>Garry's Mod</h3><p>a sandbox with no rules and endless addons</p></div>
             </article>
-            <article class="card">
-                <h3>Project Zomboid</h3>
-                <p>Zombie survival where one mistake ends the run.</p>
+            <article class="card game" style="--img:url('img/zomboid.jpg')">
+                <div><h3>Project Zomboid</h3><p>zombie survival where one mistake ##### up everything</p></div>
             </article>
         </div>
     </section>
 
     <section id="socials" class="view">
         <h2>My socials</h2>
+        <div class="card prof">
+            <h3>Roblox profile</h3>
+            <p>My personal account on Roblox.</p>
+            <a class="btn" href="https://www.roblox.com/es/users/5221332218/profile" target="_blank" rel="noopener">
+                <img class="ico" src="https://cdn.simpleicons.org/roblox/000000" alt="">Visit profile
+            </a>
+        </div>
         <ul class="social">
-            <li><a href="https://www.roblox.com/communities/421392662" target="_blank" rel="noopener">Roblox group</a></li>
-            <li><a href="https://discord.gg/jNxzuSfwhH" target="_blank" rel="noopener">Discord</a></li>
-            <li><a href="https://www.youtube.com/@ModdevYT" target="_blank" rel="noopener">YouTube</a></li>
-            <li><a href="https://github.com/ModdevGT" target="_blank" rel="noopener">GitHub</a></li>
+            <li><a href="https://www.roblox.com/communities/421392662" target="_blank" rel="noopener"><img class="ico" src="https://cdn.simpleicons.org/roblox/ffffff" alt="">Roblox group</a></li>
+            <li><a href="https://discord.gg/jNxzuSfwhH" target="_blank" rel="noopener"><img class="ico" src="https://cdn.simpleicons.org/discord/ffffff" alt="">Discord</a></li>
+            <li><a href="https://www.youtube.com/@ModdevYT" target="_blank" rel="noopener"><img class="ico" src="https://cdn.simpleicons.org/youtube/ffffff" alt="">YouTube</a></li>
+            <li><a href="https://github.com/ModdevGT" target="_blank" rel="noopener"><img class="ico" src="https://cdn.simpleicons.org/github/ffffff" alt="">GitHub</a></li>
         </ul>
     </section>
 
